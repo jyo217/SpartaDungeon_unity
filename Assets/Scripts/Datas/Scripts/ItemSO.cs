@@ -6,7 +6,10 @@ using UnityEngine;
 public class ItemSO : ScriptableObject
 {
     [Header("Item Info")]
+    public string itemName;
+    public Sprite itemImage;
     public int atk;
     public int def;
     public int con;
+    public bool isEquiped;
 }

@@ -21,9 +21,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Button inventoryBtn;
     [SerializeField] private Button closeBtn;
 
-    [SerializeField] private Button item1_btn;
-    [SerializeField] private Button item2_btn;
-    [SerializeField] private Button item3_btn;
+    [SerializeField] private GameObject popup;
 
     public enum Menu
     {
@@ -83,6 +81,7 @@ public class UIManager : MonoBehaviour
         {
             case Menu.STATUS:
                 {
+                    UpdatePlayerStatus();
                     statUI.SetActive(true);
                     break;
                 }
@@ -115,10 +114,5 @@ public class UIManager : MonoBehaviour
         statBtn.gameObject.SetActive(true);
         inventoryBtn.gameObject.SetActive(true);
         StartSetting();
-    }
-
-    public void OnClickedItemBtn()
-    {
-
     }
 }
