@@ -1,18 +1,33 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EquipmentPopup : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [Header("Equipment Popup")]
+    [SerializeField] private GameObject popupObject;
+    [SerializeField] private Text popupText;
+    [SerializeField] private Button yesBtn;
+    [SerializeField] private Button noBtn;
+
+    private event Action StartProcess;
+
+    private void Awake()
     {
-        
+        yesBtn.onClick.AddListener(HidePopup);
+        yesBtn.onClick.AddListener(() => StartProcess?.Invoke());
+
+        noBtn.onClick.AddListener(HidePopup);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void HidePopup() => gameObject.SetActive(false);
+
+    public void ShowPopup(Action okCallback, string text)
     {
-        
+        popupText.text = text;
+        popupObject.SetActive(true);
+        StartProcess = okCallback;
     }
 }

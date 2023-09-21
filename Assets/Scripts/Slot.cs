@@ -8,7 +8,6 @@ public class Slot : MonoBehaviour
     [SerializeField] Image image;
     [SerializeField] PlayerSO player;
     [SerializeField] Text equipText;
-    [SerializeField] GameObject popup;
 
     private ItemSO item;
 
@@ -51,40 +50,36 @@ public class Slot : MonoBehaviour
 
     public void OnClickSlot()
     {
-        if (item.isEquiped)
+        if(item != null)
         {
-            popup.transform.GetChild(0).GetComponent<Text>().text = "장비를 해제하시겠습니까?";
-        }
-        else
-        {
-            popup.transform.GetChild(0).GetComponent<Text>().text = "장비를 장착하시겠습니까?";
-        }
+            string popupText = "";
 
-        popup.SetActive(true);
-    }
-    
-    public void OnClickYes()
-    {
-        if (item.isEquiped)
-        {
-            popup.SetActive(false);
-            player.atk -= item.atk;
-            player.def -= item.def;
-            player.con -= item.con;
-            item.isEquiped = false;
-        }
-        else
-        {
-            popup.SetActive(false);
-            player.atk += item.atk;
-            player.def += item.def;
-            player.con += item.con;
-            item.isEquiped = true;
+            if (item.isEquiped)
+            {
+                popupText = "장비를 해제하시겠습니까?";
+                Inventory.instance.ShowPopup(() => Dequip(), popupText);
+            }
+            else
+            {
+                popupText = "장비를 장착하시겠습니까?";
+                Inventory.instance.ShowPopup(() => Equip(), popupText);
+            }
         }
     }
 
-    public void OnClickNo()
+    private void Equip()
     {
-        popup.SetActive(false);
+        player.atk += item.atk;
+        player.def += item.def;
+        player.con += item.con;
+        item.isEquiped = true;
+    }
+
+    private void Dequip()
+    {
+        player.atk -= item.atk;
+        player.def -= item.def;
+        player.con -= item.con;
+        item.isEquiped = false;
     }
 }
