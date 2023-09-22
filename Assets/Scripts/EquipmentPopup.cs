@@ -9,6 +9,7 @@ public class EquipmentPopup : MonoBehaviour
     [Header("Equipment Popup")]
     [SerializeField] private GameObject popupObject;
     [SerializeField] private Text popupText;
+    [SerializeField] private Text popupLable;
     [SerializeField] private Button yesBtn;
     [SerializeField] private Button noBtn;
 
@@ -24,9 +25,10 @@ public class EquipmentPopup : MonoBehaviour
 
     private void HidePopup() => gameObject.SetActive(false);
 
-    public void ShowPopup(Action okCallback, string text)
+    public void ShowPopup(Action okCallback, string text, string lable)
     {
         popupText.text = text;
+        popupLable.text = lable;
         popupObject.SetActive(true);
         StartProcess = okCallback;
     }
