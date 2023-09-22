@@ -10,7 +10,7 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private GameObject statUI;
     [SerializeField] private GameObject inventoryUI;
-    
+
     [SerializeField] private Text goldText;
     [SerializeField] private Text playerNameText;
     [SerializeField] private Text atkText;
@@ -20,8 +20,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Button statBtn;
     [SerializeField] private Button inventoryBtn;
     [SerializeField] private Button closeBtn;
-
-    [SerializeField] private GameObject popup;
 
     public enum Menu
     {
@@ -41,22 +39,6 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         StartSetting();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    private void Equip()
-    {
-
-    }
-
-    private void Unequip()
-    {
-
     }
 
     private void UpdatePlayerStatus()
@@ -104,6 +86,7 @@ public class UIManager : MonoBehaviour
     {
         SetBase(Menu.STATUS);
     }
+
     public void OnClickedInventoryBtn()
     {
         SetBase(Menu.INVENTORY);

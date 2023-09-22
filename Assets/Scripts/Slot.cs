@@ -53,16 +53,18 @@ public class Slot : MonoBehaviour
         if(item != null)
         {
             string popupText = "";
+            string popupLable = GetLableText();
 
             if (item.isEquiped)
             {
                 popupText = "장비를 해제하시겠습니까?";
-                Inventory.instance.ShowPopup(() => Dequip(), popupText);
+                
+                Inventory.instance.ShowPopup(() => Dequip(), popupText, popupLable);
             }
             else
             {
                 popupText = "장비를 장착하시겠습니까?";
-                Inventory.instance.ShowPopup(() => Equip(), popupText);
+                Inventory.instance.ShowPopup(() => Equip(), popupText, popupLable);
             }
         }
     }
@@ -81,5 +83,37 @@ public class Slot : MonoBehaviour
         player.def -= item.def;
         player.con -= item.con;
         item.isEquiped = false;
+    }
+
+    private string GetLableText()
+    {
+        string popupLable = "";
+
+        if (item.atk != 0)
+        {
+            if (item.atk > 0)
+            {
+                popupLable += "+ ";
+            }
+            popupLable += $"{item.atk} ATK";
+        }
+        if (item.def != 0)
+        {
+            if (item.def > 0)
+            {
+                popupLable += "+ ";
+            }
+            popupLable += $"{item.def} DEF";
+        }
+        if (item.con != 0)
+        {
+            if (item.con > 0)
+            {
+                popupLable += "+ ";
+            }
+            popupLable += $"{item.con} CON";
+        }
+
+        return popupLable;
     }
 }

@@ -60,9 +60,8 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void ShowPopup(Action okCallback, string text)
+    public void ShowPopup(Action okCallback, string text, string lable)
     {
-        Debug.Log("*****");
-        popup.ShowPopup(okCallback, text);
+        popup.ShowPopup(okCallback, text, lable);
     }
 }

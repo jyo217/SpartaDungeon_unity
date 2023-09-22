@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlayerData
   m_EditorClassIdentifier: 
   playerName: PenPen
-  atk: 15
-  def: 16
+  atk: 10
+  def: 10
   con: 12
   gold: 2000
